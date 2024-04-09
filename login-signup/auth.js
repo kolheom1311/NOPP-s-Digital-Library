@@ -1,4 +1,4 @@
-const firebaseConfig = {
+/*const firebaseConfig = {
   apiKey: "YOUR_API_KEY",
   authDomain: "YOUR_AUTH_DOMAIN",
   databaseURL: "YOUR_DATABASE_URL",
@@ -6,7 +6,18 @@ const firebaseConfig = {
   storageBucket: "YOUR_STORAGE_BUCKET",
   messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
   appId: "YOUR_APP_ID"
+};*/
+// Initialise firebaseConfig with values from the Firebase console.
+const firebaseConfig = {
+  apiKey: "AIzaSyCLJAZyTBjYdpkOoTVnibScf13O-SUMsag",
+  authDomain: "digital-library-7a492.firebaseapp.com",
+  databaseURL: "https://digital-library-7a492-default-rtdb.firebaseio.com",
+  projectId: "digital-library-7a492",
+  storageBucket: "digital-library-7a492.appspot.com",
+  messagingSenderId: "1010414231023",
+  appId: "1:1010414231023:web:46bdd92d93465f37d9ea1a"
 };
+
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 // Initialize variables
@@ -91,7 +102,7 @@ function login (){
     database_ref.child('users/' + user.uid).update(user_data)
 
     // DOne
-    alert('User Logged In!!')
+    alert('User Logged In!!');
     window.location.href= "../index.html";
 
   })
@@ -103,6 +114,7 @@ function login (){
     alert(error_message)
   })
 }
+
 
   // Google Sign-In function
 function googleSignUp() {
@@ -157,3 +169,4 @@ function validate_password(password) {
 function validate_field(field) {
   return field.trim() !== '';
 }
+
