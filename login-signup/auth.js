@@ -13,53 +13,6 @@ firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
 // const auth = getAuth();
 const database = firebase.database();
-// Set up our register function
-/*function register () {
-  // Get all our input fields
-  var email = document.getElementById('regmail').value; // Use correct ID for email field
-  var password = document.getElementById('regpass').value; // Use correct ID for password field
-  var full_name = document.getElementById('regname').value; // Use correct ID for full_name field
-  // Validate input fields
-  if (validate_email(email) == false || validate_password(password) == false) {
-    alert('Email or Password is Outta Line!!');
-    return;
-  }
-  if (validate_field(full_name) == false) {
-    alert('One or More Extra Fields is Outta Line!!');
-    return;
-  }
-  
-  // Move on with Auth
-  auth.createUserWithEmailAndPassword(email, password)
-    .then(function() {
-      // Declare user variable
-      var user = auth.currentUser;
-
-      // Add this user to Firebase Database
-      // var database_ref = database.ref();
-
-      // Create User data
-      var user_data = {
-        email : email,
-        full_name : full_name,
-        last_login : Date.now()
-      };
-
-      // Push to Firebase Database
-      database.ref('users/' + email).set(user_data);
-
-      // Done
-      alert('User Created!!');
-      window.location.href= "../index.html";
-    })
-    .catch(function(error) {
-      // Firebase will use this to alert of its errors
-      var errorCode = error.code;
-      var errorMessage = error.message;
-
-      alert(errorMessage);
-    });
-}*/
 
 function ToggleScreenLoader(){
     let loader = document.getElementById('loader')
@@ -69,93 +22,6 @@ function ToggleScreenLoader(){
       loader.style.display = "none";
     }
 }
-
-/*function login (){
-  // Get all our input fields
-  email = document.getElementById('logmail').value
-  password = document.getElementById('logpass').value
-
-  // Validate input fields
-  if (validate_email(email) == false || validate_password(password) == false) {
-    alert('Email or Password is Outta Line!!')
-    return
-    // Don't continue running the code
-  }
-
-  auth.signInWithEmailAndPassword(email, password)
-  .then(function() {
-    // Declare user variable
-    var user = auth.currentUser
-
-    // Add this user to Firebase Database
-    var database_ref = database.ref()
-
-    // Create User data
-    var user_data = {
-      last_login : Date.now()
-    }
-
-    // Push to Firebase Database
-    database_ref.child('users/' + user.uid).update(user_data)
-    // Done
-    sessionStorage.setItem("UserFullName", user.full_name)
-    sessionStorage.setItem("UserEmailID", user.email)
-    alert('User Logged In!!')
-    window.location.href= "../index.html";
-  })
-  .catch(function(error) {
-    // Firebase will use this to alert of its errors
-    var error_code = error.code
-    var error_message = error.message
-
-    alert(error_code+': '+error_message)
-  })
-}
-
-function register (e) {
-  // Prevent the default form submission
-  e.preventDefault();
-
-  // Get all our input fields
-  var email = document.getElementById('regmail').value;
-  var password = document.getElementById('regpass').value;
-  var full_name = document.getElementById('regname').value;
-
-  // Validate input fields
-  if (validate_email(email) == false || validate_password(password) == false) {
-    alert('Email or Password is Outta Line!!');
-    return;
-  }
-  if (validate_field(full_name) == false) {
-    alert('One or More Extra Fields is Outta Line!!');
-    return;
-  }
-
-  // Move on with Auth
-  auth.createUserWithEmailAndPassword(email, password)
-    .then(function() {
-      // Declare user variable
-      var user = auth.currentUser;
-
-      // Create User data
-      var user_data = {
-        email : email,
-        full_name : full_name,
-        last_login : Date.now()
-      };
-
-      // Push to Firebase Database
-      database.ref('users/' + user.uid).set(user_data);
-
-      // Done
-      alert('User Created!!');
-      window.location.href= "../index.html";
-    })
-    .catch(function(error) {
-      var errorMessage = error.message;
-      alert(errorMessage);
-    });
-}*/
 
 function register (e) {
   // Prevent the default form submission
@@ -263,34 +129,6 @@ function googleSignUp() {
       alert('Google Sign-up failed. Please try again.');
     });
 }
-
-/*function resetPassword() {
-  emailForPassReset = document.getElementById('logmail').value;
-  if (validate_email(emailForPassReset)) {
-    firebase.auth().sendPasswordResetEmail(emailForPassReset).then(()=>{
-        alert('A password reset link has been sent to your registered Email ID. Click on the provided link or copy it and paste into a browser');
-    }),
-    alert('An email has been sent with instructions on how to reset your password.')
-  } else {
-    alert('Please enter a valid email address.')
-  }
-
-  // var email = document.getElementById('email').value;
-
-  // // Send password reset email
-  // firebase.auth().sendPasswordResetEmail(email)
-  //   .then(() => {
-  //     // Password reset email sent successfully
-  //     alert('Password reset email sent. Check your inbox.');
-  //   })
-  //   .catch((error) => {
-  //     // Handle errors
-  //     var errorCode = error.code;
-  //     var errorMessage = error.message;
-  //     console.error('Password reset error:', errorMessage, errorCode);
-  //     alert('Failed to send password reset email. Please try again.');
-  //   });
-}*/
 
 function resetPassword() {
   emailForPassReset = document.getElementById('logmail').value;

@@ -69,48 +69,6 @@ function logoutUser() {
   });
 }
 
-/*function getUserInfo() {
-  // Initialize variables to store user information
-  let userName = "";
-  let userEmail = "";
-  // Check if a user is logged in
-  return new Promise((resolve, reject) => {
-    firebase.auth().onAuthStateChanged(user => {
-      if (user) {
-        // User is signed in, retrieve user data from Firebase Database
-        firebase.database().ref('users/' + user.uid).once('value').then(snapshot => {
-          const userData = snapshot.val();
-          userName = userData.full_name;
-          userEmail = userData.email;
-
-          // Log user information
-          console.log("User is signed in");
-          console.log("User Name:", userName);
-          console.log("User Email:", userEmail);
-
-          resolve({
-            name: userName,
-            email: userEmail
-          });
-        }).catch(error => {
-          console.error('Error fetching user data:', error);
-          reject({
-            name: "",
-            email: ""
-          });
-        });
-      } else {
-        // No user is signed in
-        console.log("No user signed in");
-        reject({
-          name: "",
-          email: ""
-        });
-      }
-    });
-  });
-}*/
-
 function getUserInfo() {
   return new Promise((resolve, reject) => {
     firebase.auth().onAuthStateChanged(user => {
@@ -156,45 +114,6 @@ function getUserInfo() {
     });
   });
 }
-
-
-
-// async function updateUsername() {
-//   // Check if user information is already cached
-//   const cachedUserInfo = sessionStorage.getItem('userInfo');
-  
-//   if (cachedUserInfo) {
-//     // User information is cached, display it
-//     const userInfo = JSON.parse(cachedUserInfo);
-//     const { name, email } = userInfo;
-//     displayUserInfo(name, email);
-//     return; // Exit the function since we already have the user information
-//   }
-
-//   // User information is not cached, fetch it from Firebase
-//   // Clear cached user information
-//   sessionStorage.removeItem('userInfo');
-
-//   // Display loading state
-//   // displayLoadingState();
-//   document.body.getElementById('account-loader').style.display = "flex";
-
-//   // Asynchronously fetch the latest user information from Firebase
-//   try {
-//     userInfo = await getUserInfo();
-//     const { name, email } = userInfo;
-//     displayUserInfo(name, email);
-//     document.body.getElementById('account-loader').style.display = "none";
-//     // Cache the latest user information
-//     sessionStorage.setItem('userInfo', JSON.stringify(userInfo));
-// } catch (error) {
-//     console.error("Error updating username:", error);
-//     // Handle error: Display an error message or fallback to default state
-//     displayErrorState();
-// document.body.getElementById('account-loader').style.display = "none";
-//   }
-// }
-
 
 function displayUserInfo(name, email) {
   const usernameElement = document.getElementById('username');
@@ -257,31 +176,6 @@ function displayErrorState() {
   usernameElement.textContent = "Error loading user data";
   emailElement.textContent = "";
 }
-
-// Call the updateUsername function to display the username when the page loads
-// window.onload = updateUsername;
-
-
-
-/*function uploadFiles() {
-  const storageRef = firebase.storage().ref("files/" + fileName);
-  const uploadTask = storageRef.put(fileItem);
-
-  return new Promise((resolve, reject) => {
-      uploadTask.then((snapshot) => {
-          return snapshot.ref.getDownloadURL();
-      }).then((url) => {
-          console.log("URL: ", url);
-          if (url !== "") {
-              resolve(url); // Resolve the Promise with the URL
-          }
-      }).catch((error) => {
-          console.log("Error is ", error);
-          reject(error); // Reject the Promise if there's an error
-          toggleLoader();
-      });
-  });
-}*/
 
 function uploadFiles(fileItem, userId) {
 const storageRef = firebase.storage().ref("files/" + userId + "/" + fileItem.name); 
