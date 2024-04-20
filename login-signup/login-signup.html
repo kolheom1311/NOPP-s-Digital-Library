@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Public Digital Library</title>
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css'>
+  <link rel="stylesheet" href="./login-signup.css">
+  <!-- <link rel="icon" type="image/png" href="../emotional.png"> -->
+</head>
+<body>
+<!-- Loader -->
+<div id="loader" class="loaderoverlay">
+	<div class="spinner center">
+	<div class="spinner-blade"></div>
+	<div class="spinner-blade"></div>
+	<div class="spinner-blade"></div>
+	<div class="spinner-blade"></div>
+	<div class="spinner-blade"></div>
+	<div class="spinner-blade"></div>
+	<div class="spinner-blade"></div>
+	<div class="spinner-blade"></div>
+	<div class="spinner-blade"></div>
+	<div class="spinner-blade"></div>
+	<div class="spinner-blade"></div>
+	<div class="spinner-blade"></div>
+	</div>
+</div>
+
+<!-- Reset Password Modal -->
+<!-- <div id="resetPasswordModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <-- Modal Header ->
+            <div class="modal-header">
+                <h4 class="modal-title">Reset Password</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            
+            <- Modal Body --
+            <div class="modal-body">
+                <-- Email Input ->
+                <div class="form-group">
+                    <label for="resetEmail">Email:</label>
+                    <input type="email" class="form-control" id="resetEmail" placeholder="Enter your email" required>
+                </div>
+                
+                <button type="button" class="btn btn-primary btn-block">Reset Password</button>
+                
+                <div id="resetError" class="alert alert-danger mt-3" style="display: none;"></div>
+                
+                <div id="resetSuccess" class="alert alert-success mt-3" style="display: none;"></div>
+            </div>
+            
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+
+<div class="center-text">Public Digital Library</div>
+<a href="../index.html" class="back-button"><i class="fas fa-arrow-left"></i></a>
+<div class="container" id="container">
+	<div class="form-container sign-up-container">
+		<form action="#">
+			<h1>Create Account</h1>
+			<div class="social-container">
+				<!-- <a href="#" class="social"><i class="fab fa-facebook-f"></i></a> -->
+				<a href="#" class="social" onclick="googleSignUp()"><i class="fab fa-google"></i></a>
+				<a href="#" class="social"><i class="fab fa-apple"></i></a>
+				<a href="#" class="social"><i class="fab fa-microsoft"></i></i></a>
+				<!-- <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a> -->
+			</div>
+			<span>or use your email for registration</span>
+			   <input type="text" id="regname" placeholder="Name" />
+			<input type="email" id="regmail" placeholder="Email" />
+			<input type="password" id="regpass" placeholder="Password" />
+			<button onclick="register(event)">Sign Up</button>
+		</form>
+	</div>
+	<div class="form-container sign-in-container">
+		<form action="#">
+			<h1>Sign in</h1>
+			<div class="social-container">
+				<!-- <a href="#" class="social"><i class="fab fa-facebook-f"></i></a> -->
+				<a href="#" class="social" onclick="googleSignUp()"><i class="fab fa-google"></i></a>
+				<a href="#" class="social"><i class="fab fa-apple"></i></a>
+				<a href="#" class="social"><i class="fab fa-microsoft"></i></i></a>
+			</div>
+			<span>or use your account</span>
+			<input type="email" id="logmail" placeholder="Email" />
+			<input type="password" id="logpass" placeholder="Password" />
+			<a onclick="resetPassword()" style="cursor: pointer;">Forgot your password?</a>
+			<button onclick="login(event)">Sign In</button>
+		</form>
+	</div>
+	<div class="overlay-container">
+		<div class="overlay">
+			<div class="overlay-panel overlay-left">
+				<h1>Welcome Back!</h1>
+				<p>To keep connected with us please login with your personal info</p>
+				<button class="ghost" id="signIn">Sign In</button>
+			</div>
+			<div class="overlay-panel overlay-right">
+				<h1>Hello, User!</h1>
+				<p>Enter your personal details and start your journey with Sentify</p>
+				<button class="ghost" id="signUp">Sign Up</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- <script>
+    document.getElementById('sub').addEventListener('click', function() {
+        register();
+    });
+</script> -->
+<!-- <script src="https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.8.1/firebase-database.js"></script> -->
+	<script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
+	<script src="auth.js"></script>
+	<script src="login-signup.js"></script>
+</body>
+</html>

@@ -1,0 +1,315 @@
+/* Style for the modal container */
+.circular-btn {
+  border-radius: 20%;
+  width: 40px;  /*Adjust the width and height as needed*/
+  height: 40px;
+  display: block;
+  justify-content: center;
+  align-items: center;
+}
+
+.separator {
+  display: inline-block;
+  margin: 0 1px; /* Adjust margin as needed */
+  border-left: 1px solid currentColor; /* Uses the text color as the line color */
+  height: 20px; /* Adjust height to align with text */
+  vertical-align: middle; /* Aligns vertically with adjacent inline elements */
+}
+
+.modal {
+  display: none; /* Hide modal by default */
+  position: fixed;
+  z-index: 20;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(20px); /* Apply blur effect to background */
+  background-color: rgba(0, 0, 0, 0.5); /* Add semi-transparent black background */
+}
+
+/* Style for the modal content */
+/* .account-modal-content {
+  background-color: #fefefe;
+  padding: 20px;
+  border: 1px solid #888;
+  max-width: 400px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); 
+  border-radius: 10px; 
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); 
+} 
+
+/* Close button style */
+.close {
+  float: right;
+  cursor: pointer;
+  font-size: 20px; /* Increase font size for better visibility */
+  color: #888; /* Change color to a lighter shade */
+}
+
+.close:hover {
+  color: red;
+}
+
+  
+  /*.close {
+    float: right;
+    cursor: pointer;
+  }
+  
+  .close:hover {
+    color: red;
+  }
+   */
+   
+  body {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+  }
+  
+  /* Custom scrollbar for webkit browsers (Chrome, Safari) */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: #333; /* Dark background color */
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: #666; /* Dark thumb color */
+    border-radius: 5px;
+  }
+  
+  /* Custom scrollbar for Firefox */
+  body {
+    scrollbar-width: thin;
+    scrollbar-color: #666 #333; /* Dark thumb and dark background color */
+  }
+
+  /* Style for the modal container */
+  /* .modal {
+    display: none; /* Hide modal by default 
+    position: absolute;
+    z-index: 20;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(20px); /* Apply blur effect to background 
+    background-color: rgba(0, 0, 0, 0.5); /* Add semi-transparent black background 
+  } */
+  
+  /* Style for the modal content */
+   .account-modal-content {
+    background-color: #fefefe;
+    /* padding: 20px;  */
+    border: 1px solid #888;
+    height: 180px;
+    width: 350px;
+    position: absolute;
+    z-index: 5;
+    top: 60px;  
+    right: 5px; 
+    border-radius: 10px; 
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); 
+  }  
+  
+  
+  .overlay {
+    background: rgba(0, 0, 0, 0.7); 
+    backdrop-filter: blur(20px);
+    position:fixed;
+    z-index: 9999;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: none;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .modal-content{
+    background-color: #fefefe;
+    /* padding: 20px;  */
+    border: 1px solid #888;
+    height: 180px;
+    width: 350px;
+    position: absolute;
+    z-index: 5;
+    top: 60px;  
+    right: 5px; 
+    border-radius: 10px; 
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); 
+  }
+
+  .loginModal {
+    position:absolute; /* Fixed position */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* Black background with opacity */
+    z-index: 9999; /* Ensure it's on top */
+    display: flex; /* Use flexbox for centering */
+    justify-content: center; /* Horizontally center */
+    align-items: center; /* Vertically center */
+}
+
+.modal-wrapper {
+    width: 80%; /* Adjust width as needed */
+    max-width: 500px; /* Max width */
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+  .account-overlay {
+    background: rgba(0, 0, 0, 0.1); 
+    backdrop-filter: blur(20px);
+    position:fixed;
+    z-index: 9999;
+    height: 180px;
+    width: 350px;
+    top: 60px;
+    right: 5px;
+    border-radius: 10px;
+    display: none;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .instagram-icon {
+    font-size: 24px;
+    transition: color 0.3s;
+  }
+  .instagram-icon:hover {
+      color: radial-gradient(circle at 33% 100%, #fed373 4%, #f15245 30%, #d92e7f 62%, #9b36b7 85%, #515ecf);
+  }
+
+  .useratitle{
+    margin: 10px 0 10px 0;
+    font-size: large;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: 900;
+    text-align: center;
+  }
+
+  .userdetails {
+    margin: 20px 0 0 10px;
+    font-size: medium;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: normal;
+    line-height: 1.8;
+}
+  
+  .spinner {
+    font-size: 75px;
+    position: fixed;
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+  }
+  
+  .spinner-blade {
+    position: absolute;
+    left: 0.4629em;
+    bottom: 0;
+    width: 0.074em;
+    height: 0.2777em;
+    border-radius: 0.5em;
+    background-color: transparent;
+    transform-origin: center -0.2222em;
+    -webkit-animation: spinner-fade 1s infinite linear;
+    animation: spinner-fade 1s infinite linear;
+  }
+  
+  .spinner center {
+    position: absolute;
+  }
+
+.spinner-blade:nth-child(1) {
+  -webkit-animation-delay: 0s;
+          animation-delay: 0s;
+  transform: rotate(0deg);
+}
+.spinner-blade:nth-child(2) {
+  -webkit-animation-delay: 0.083s;
+          animation-delay: 0.083s;
+  transform: rotate(30deg);
+}
+.spinner-blade:nth-child(3) {
+  -webkit-animation-delay: 0.166s;
+          animation-delay: 0.166s;
+  transform: rotate(60deg);
+}
+.spinner-blade:nth-child(4) {
+  -webkit-animation-delay: 0.249s;
+          animation-delay: 0.249s;
+  transform: rotate(90deg);
+}
+.spinner-blade:nth-child(5) {
+  -webkit-animation-delay: 0.332s;
+          animation-delay: 0.332s;
+  transform: rotate(120deg);
+}
+.spinner-blade:nth-child(6) {
+  -webkit-animation-delay: 0.415s;
+          animation-delay: 0.415s;
+  transform: rotate(150deg);
+}
+.spinner-blade:nth-child(7) {
+  -webkit-animation-delay: 0.498s;
+          animation-delay: 0.498s;
+  transform: rotate(180deg);
+}
+.spinner-blade:nth-child(8) {
+  -webkit-animation-delay: 0.581s;
+          animation-delay: 0.581s;
+  transform: rotate(210deg);
+}
+.spinner-blade:nth-child(9) {
+  -webkit-animation-delay: 0.664s;
+          animation-delay: 0.664s;
+  transform: rotate(240deg);
+}
+.spinner-blade:nth-child(10) {
+  -webkit-animation-delay: 0.747s;
+          animation-delay: 0.747s;
+  transform: rotate(270deg);
+}
+.spinner-blade:nth-child(11) {
+  -webkit-animation-delay: 0.83s;
+          animation-delay: 0.83s;
+  transform: rotate(300deg);
+}
+.spinner-blade:nth-child(12) {
+  -webkit-animation-delay: 0.913s;
+          animation-delay: 0.913s;
+  transform: rotate(330deg);
+}
+
+@-webkit-keyframes spinner-fade {
+  0% {
+    background-color: #69717d;
+  }
+  100% {
+    background-color: transparent;
+  }
+}
+
+@keyframes spinner-fade {
+  0% {
+    background-color: #69717d;
+  }
+  100% {
+    background-color: transparent;
+  }
+}
