@@ -1,11 +1,11 @@
 const firebaseConfig = {
-  apiKey: "your_api_key_here",
-  authDomain: "your_auth_domain_here.firebaseapp.com",
-  databaseURL: "https://your_project_id_here-default-rtdb.firebaseio.com",
-  projectId: "your_project_id_here",
-  storageBucket: "your_storage_bucket_here.appspot.com",
-  messagingSenderId: "your_messaging_sender_id_here",
-  appId: "your_app_id_here"
+  apiKey: "AIzaSyCLJAZyTBjYdpkOoTVnibScf13O-SUMsag",
+  authDomain: "digital-library-7a492.firebaseapp.com",
+  databaseURL: "https://digital-library-7a492-default-rtdb.firebaseio.com",
+  projectId: "digital-library-7a492",
+  storageBucket: "digital-library-7a492.appspot.com",
+  messagingSenderId: "1010414231023",
+  appId: "1:1010414231023:web:46bdd92d93465f37d9ea1a"
 };
 
 firebase.initializeApp(firebaseConfig);
