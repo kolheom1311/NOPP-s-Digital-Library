@@ -121,8 +121,11 @@ async function submit(e) {
             if (!author) errorMsg += "\n- Author Name";
             if (!description) errorMsg += "\n- Description";
             if (!category) errorMsg += "\n- Category";
-            
-            display.show('danger', errorMsg);
+            if (errorMsg === "Please fill in the following fields:\n- Book Name\n- Author Name\n- Description\n- Category") {
+                display.show('danger', "All fields are empty");
+            } else {
+                display.show('danger', errorMsg);   
+            }
             toggleLoader();
             return;
         } else if (fileInput.files.length === 0) {
@@ -375,4 +378,3 @@ async function updateUsername() {
         displayErrorState();
     }
 }
-

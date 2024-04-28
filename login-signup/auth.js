@@ -129,6 +129,7 @@ function googleSignUp() {
     });
 }
 
+
 function resetPassword() {
   emailForPassReset = document.getElementById('logmail').value;
   ToggleScreenLoader();
@@ -163,7 +164,6 @@ function resetPassword() {
     .catch((error) => {
       console.error('Error fetching sign-in methods:', error);
       alert('An error occurred. Please try again.');
-      ToggleScreenLoader();
     });
 }
 

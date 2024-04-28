@@ -142,16 +142,19 @@ document.addEventListener('DOMContentLoaded', async function() {
     // Display appropriate buttons
     const loginBtn = document.getElementById('login-Btn');
     const accountBtn = document.getElementById('account-Btn');
+    const searchBar = document.getElementById('searchbarinput');
     showbooks();
     
     if (loggedIn === false) {
       accountBtn.style.display = 'none';
       loginBtn.style.display = 'block';
       document.getElementById("collection").style.display = 'none';
+      searchBar.disabled = true;
     } else {
       loginBtn.style.display = 'none';
       accountBtn.style.display = 'block';
       document.getElementById('collection').style.display = 'block';
+      searchBar.disabled = false;
     }
     
     // Hide loader after a delay
@@ -164,6 +167,56 @@ document.addEventListener('DOMContentLoaded', async function() {
     // Handle error
   }
 });
+
+function searchCollection() {
+  const searchBarInput = document.getElementById('searchbarinput').value.toLowerCase();
+  const tableRows = document.getElementById('tablebody').getElementsByTagName('tr');
+  let foundResults = false; // Flag to track if any results are found
+
+  for (let i = 0; i < tableRows.length; i++) {
+      const cells = tableRows[i].getElementsByTagName('td');
+      let found = false;
+
+      for (let j = 1; j < cells.length; j++) { // Start from index 1 to skip the first cell (Serial No.)
+          const cellText = cells[j].textContent.toLowerCase();
+
+          if (cellText.includes(searchBarInput)) {
+              found = true;
+              break; // If match found in any cell, no need to check other cells in the row
+          }
+      }
+
+      if (found) {
+          tableRows[i].style.display = ''; // Show the row if match found
+          foundResults = true; // Update flag if results are found
+      } else {
+          tableRows[i].style.display = 'none'; // Hide the row if no match found
+      }
+  }
+
+  // Display message if no results are found
+  if (!foundResults) {
+      const noRecordsMsg = document.createElement('tr');
+      noRecordsMsg.innerHTML = '<td colspan="6" style="text-align: center;">No Records Retrieved</td>';
+      document.getElementById('tablebody').appendChild(noRecordsMsg);
+  } else {
+      // Remove the "No Records Retrieved" message if it was previously displayed
+      const noRecordsMsg = document.getElementById('noRecordsMsg');
+      if (noRecordsMsg) {
+          noRecordsMsg.remove();
+      }
+  }
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  const searchForm = document.getElementById('searchbarinput');
+  const collectionElement = document.getElementById('collection');
+  searchForm.addEventListener('input', function() {
+    collectionElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      searchCollection();
+  });
+});
+
 
 function displayLoadingState() {
   const usernameElement = document.getElementById('username');
