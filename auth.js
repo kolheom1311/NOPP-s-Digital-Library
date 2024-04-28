@@ -147,9 +147,11 @@ document.addEventListener('DOMContentLoaded', async function() {
     if (loggedIn === false) {
       accountBtn.style.display = 'none';
       loginBtn.style.display = 'block';
+      document.getElementById("collection").style.display = 'none';
     } else {
-      accountBtn.style.display = 'block';
       loginBtn.style.display = 'none';
+      accountBtn.style.display = 'block';
+      document.getElementById('collection').style.display = 'block';
     }
     
     // Hide loader after a delay

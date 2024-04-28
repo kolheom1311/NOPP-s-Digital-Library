@@ -99,7 +99,6 @@ function login (e){
     sessionStorage.setItem("UserEmailID", user.email);
     sessionStorage.removeItem('userInfo');
     // Done
-    alert('User Logged In!!');
     window.location.href= "../index.html";
   })
   .catch(function(error) {

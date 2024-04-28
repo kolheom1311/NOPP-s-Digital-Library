@@ -5,7 +5,7 @@
 }
 
 body {
-	background-image:url(https://source.unsplash.com/1400x600/?bookshelf);
+	background-image: url(https://source.unsplash.com/1400x600/?bookshelf);
 	backdrop-filter: blur(10px);
 	background-size: cover;
     display: flex;

@@ -1,6 +1,4 @@
-console.log('this is the digital library tutorial');
-
-// showbooks();
+console.log('this is a digital library');
 
 function Book(bookname, author, category, description, url) {
     this.bookname = bookname;
@@ -85,13 +83,12 @@ let libraryform = document.getElementById('libraryform')
 libraryform.addEventListener('submit', submit)
 
 async function submit(e) {
-    console.log('you clicked ');
     e.preventDefault();
     toggleLoader();
     let display = new Display();
-    let isLoggedIn = await checkUserLoggedIn(); // Await the promise
-  
-    if (isLoggedIn) {
+    const { loggedIn} = await checkUserLoggedIn(); // Await the promise
+
+    if (loggedIn) {
         // get the form values
         let bookname = document.getElementById('formbook').value;
         let author = document.getElementById('formauthor').value;
@@ -172,15 +169,14 @@ async function submit(e) {
         } else {
             display.show('danger', 'Sorry, you cannot add this book');
         }
-  
         toggleLoader();
         localStorage.setItem('data', JSON.stringify(bookobj));
         showbooks();
     } else {
         toggleLoader();
         display.show('info', 'Please Login to continue');
-        let mod = document.getElementById("login-modal");
-        mod.style.display = "block";
+        const submitBtn = document.getElementById('submitBtn');
+        submitBtn.disabled = true;
     }
   }
 
@@ -272,7 +268,7 @@ function ToggleScreenLoader(){
 function toggleLoader() {
     if (loader.style.display === "block") {
         loader.style.display = "none";
-        document.body.style.position = "";
+        document.body.style.position = "relative";
         document.body.style.top = "";
         document.body.style.left = "";
         document.body.style.right = "";
@@ -291,45 +287,6 @@ window.addEventListener('beforeunload', function() {
     // Remove specific item from sessionStorage
     sessionStorage.removeItem('cachedUserInfo');
   });  
-
-/*async function toggleModal(modalId) {
-    var modal = document.getElementById(modalId);
-    var loader = document.getElementById('account-loader');
-    
-    // Check the initial state of the modal
-    var isModalHidden = modal.style.display === "" || modal.style.display === "none";
-
-    if (isModalHidden) {
-        // Display the loader
-        loader.style.display = "flex";
-
-        // Open the modal
-        modal.style.display = "block";
-        document.body.style.overflowY =  "hidden";
-        document.body.style.position = "fixed";
-
-        try {
-            await updateUsername();
-        } catch (error) {
-            console.error("Error updating username:", error);
-            
-            // Handle error: Display an error message or fallback to default state
-            displayErrorState();
-        } finally {
-            // Hide the loader
-            loader.style.display = "none";
-
-            // Reset the body styles
-            document.body.style.overflowY = "auto";
-            document.body.style.position =  "static";
-        }
-    } else {
-        // Close the modal
-        modal.style.display = "none";
-        document.body.style.overflowY = "scroll";
-        document.body.style.position =  "static";
-    }
-}*/
 
 async function toggleModal(modalId) {
     var modal = document.getElementById(modalId);
@@ -392,73 +349,6 @@ async function toggleModal(modalId) {
         console.log('userInfo does not exist in sessionStorage');
       }
   }
-
-/*async function updateUsername() {
-    // Immediately display the loading state
-    document.getElementById('account-loader').style.display = "flex";
-    
-    try {
-        let userInfo;
-
-        // Check if user information is already cached
-        if (isUserInfoExists()) {
-            const cachedUserInfo = sessionStorage.getItem('userInfo');
-            userInfo = JSON.parse(cachedUserInfo);
-        } else {
-            // Asynchronously fetch the latest user information from Firebase
-            userInfo = await getUserInfo();
-            
-            // Cache the latest user information
-            sessionStorage.setItem('userInfo', JSON.stringify(userInfo));
-        }
-
-        const { name, email } = userInfo;
-        displayUserInfo(name, email);
-    } catch (error) {
-        console.error("Error updating username:", error);
-        
-        // Handle error: Display an error message or fallback to default state
-        displayErrorState();
-    } finally {
-        // Hide the loading state
-        document.getElementById('account-loader').style.display = "none";
-    }
-}
-
-async function updateUsername() {
-    // Immediately display the loading state
-    document.getElementById('account-loader').style.display = "flex";
-    
-    try {
-        let userInfo;
-
-        // Check if user information is already cached
-        if (isUserInfoExists()) {
-            const cachedUserInfo = sessionStorage.getItem('userInfo');
-            userInfo = JSON.parse(cachedUserInfo);
-        } else {
-            // Asynchronously fetch the latest user information from Firebase
-            userInfo = await getUserInfo();
-            
-            // Cache the latest user information
-            sessionStorage.setItem('userInfo', JSON.stringify(userInfo));
-        }
-
-        const { name, email } = userInfo;
-        displayUserInfo(name, email);
-        
-        // Set the flag to indicate that user info is loaded
-        isUserInfoLoaded = true;
-    } catch (error) {
-        console.error("Error updating username:", error);
-        
-        // Handle error: Display an error message or fallback to default state
-        displayErrorState();
-    } finally {
-        // Hide the loading state
-        document.getElementById('account-loader').style.display = "none";
-    }
-}*/
 
 async function updateUsername() {
     try {
