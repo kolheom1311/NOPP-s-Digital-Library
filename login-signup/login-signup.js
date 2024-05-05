@@ -4,6 +4,8 @@ const container = document.getElementById('container');
 
 signUpButton.addEventListener('click', () => {
 	container.classList.add("right-panel-active");
+	document.getElementById('logmail').value = '';
+	document.getElementById('logpass').value = '';
 });
 
 signInButton.addEventListener('click', () => {

@@ -58,6 +58,16 @@
     </div>
 </div> -->
 
+<!-- Reset Password Modal -->
+<div id="resetModal" class="reset-modal">
+	<div class="reset-modal-content">
+		<h1>Digital Library</h1>
+		<p>Password Redressal System</p>
+		<span class="reset-close" onclick="closeResetModal()">&times;</span>
+	  <input type="text" id="emailInput" class="reset-input" placeholder="Regitered Email">
+	  <button class="reset-button" onclick="resetPassword()">Reset Password</button>
+	</div>
+</div>
 
 <div class="center-text">Digital Library</div>
 <a href="../index.html" class="back-button"><i class="fas fa-arrow-left"></i></a>
@@ -91,7 +101,7 @@
 			<span>or use your account</span>
 			<input type="email" id="logmail" placeholder="Email" />
 			<input type="password" id="logpass" placeholder="Password" />
-			<a onclick="resetPassword()" style="cursor: pointer;">Forgot your password?</a>
+			<a onclick="openResetModal()" style="cursor: pointer;">Forgot your password?</a>
 			<button onclick="login(event)">Sign In</button>
 		</form>
 	</div>

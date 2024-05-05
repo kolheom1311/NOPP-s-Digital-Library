@@ -196,9 +196,18 @@ function searchCollection() {
 
   // Display message if no results are found
   if (!foundResults) {
-      const noRecordsMsg = document.createElement('tr');
-      noRecordsMsg.innerHTML = '<td colspan="6" style="text-align: center;">No Records Retrieved</td>';
-      document.getElementById('tablebody').appendChild(noRecordsMsg);
+    const noRecordsMsg = document.createElement('tr');
+    noRecordsMsg.id = 'noRecordsMsg'; // Set an ID for easy access
+    noRecordsMsg.innerHTML = '<td colspan="6" style="text-align: center;">No Records Retrieved</td>';
+    document.getElementById('tablebody').appendChild(noRecordsMsg);
+
+    // Remove the message after 10 seconds
+    setTimeout(() => {
+        const msgToRemove = document.getElementById('noRecordsMsg');
+        if (msgToRemove) {
+            msgToRemove.remove();
+        }
+    }, 5000); // 5000 milliseconds = 5 seconds
   } else {
       // Remove the "No Records Retrieved" message if it was previously displayed
       const noRecordsMsg = document.getElementById('noRecordsMsg');

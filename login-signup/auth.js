@@ -23,6 +23,16 @@ function ToggleScreenLoader(){
     }
 }
 
+function openResetModal() {
+  document.getElementById('resetModal').style.display = 'block';
+}
+
+function closeResetModal() {
+  document.getElementById('resetModal').style.display = 'none';
+  document.getElementById('emailInput').value = '';
+}
+
+
 function register (e) {
   // Prevent the default form submission
   e.preventDefault();
@@ -70,17 +80,16 @@ function register (e) {
 function login (e){
   // Prevent the default form submission
   e.preventDefault();
-  ToggleScreenLoader();
   // Get all our input fields
   var email = document.getElementById('logmail').value;
   var password = document.getElementById('logpass').value;
-
+  ToggleScreenLoader();
   // Validate input fields
   if (validate_email(email) == false || validate_password(password) == false) {
     alert('Email or Password is Outta Line!!');
+    document.getElementById('loader').style.display = 'none';
     return;
   }
-
   auth.signInWithEmailAndPassword(email, password)
   .then(function() {
     // Declare user variable
@@ -105,7 +114,6 @@ function login (e){
     var error_message = error.message;
     alert(error_message);
   });
-  ToggleScreenLoader();
 }
 
   // Google Sign-In function
@@ -129,47 +137,65 @@ function googleSignUp() {
     });
 }
 
+/*async function resetPassword() {
+  var emailInput = document.getElementById('emailInput').value;
+  try {
+    console.log("Email input:", emailInput);
+    const signInMethods = await auth.fetchSignInMethodsForEmail(emailInput);
+    console.log("Sign-in methods length:", signInMethods.length);
+    if (signInMethods.length > 0) {
+      await auth.sendPasswordResetEmail(emailInput);
+      console.log('Password reset link sent to email');
+    } else {
+      console.error('User not found or email is not associated with any sign-in method');
+    }
+  } catch (error) {
+    console.error(error.message);
+  }
+}*/
 
-function resetPassword() {
-  emailForPassReset = document.getElementById('logmail').value;
-  ToggleScreenLoader();
-  // First, check if the email exists
-  firebase.auth().fetchSignInMethodsForEmail(emailForPassReset)
-    .then((signInMethods) => {
-      if (signInMethods.length === 0) {
-        // No existing account found for this email
-        alert('No account found with this email. Please enter a registered email address.');
-        // Clear the email field
-        document.getElementById('logmail').value = '';
-        return;
-      }
-
-      // Email exists, proceed with sending reset password email
-      if (validate_email(emailForPassReset)) {
-        firebase.auth().sendPasswordResetEmail(emailForPassReset)
-          .then(() => {
-            alert('A password reset link has been sent to your registered Email ID. Click on the provided link or copy it and paste into a browser');
-          })
-          .catch((error) => {
-            console.error('Error sending password reset email:', error);
-            alert('An error occurred while sending the password reset email. Please try again later.');
-            ToggleScreenLoader();
-          });
-          ToggleScreenLoader();
-      } else {
-        alert('Please enter a valid email address.');
-        ToggleScreenLoader();
-      }
+function resetPassword(){
+  var email = document.getElementById('emailInput').value;
+  firebase.auth().sendPasswordResetEmail(email)
+    .then
+    (function() {
+      // Password reset email sent successfully
+      window.alert("If "+ email +" is registered with Digital Library,\nA Password reset link is sent to it.");
+      // You can display a message to the user here if needed
     })
-    .catch((error) => {
-      console.error('Error fetching sign-in methods:', error);
-      alert('An error occurred. Please try again.');
+    .catch(function(error) {
+      // Error occurred while sending password reset email
+      console.error("Error sending password reset email:", error);
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      console.log(errorCode+": "+errorMessage); 
+      // You can display an error message to the user here if needed
     });
 }
 
-function validate_email(email) {
-  // Your existing email validation code
-}
+/*async function checkEmailExists() {
+  var email = document.getElementById('emailInput').value;
+  try {
+    const userRecord = await firebase.auth().getUserByEmail(email);
+    // If userRecord exists, email exists
+    console.log("Email exists:", email);
+    // You can handle the existence of the email here
+    return true;
+  } catch (error) {
+    // If error code is 'auth/user-not-found', email does not exist
+    if (error.code === 'auth/user-not-found') {
+      console.log("Email does not exist:", email);
+      // You can handle the non-existence of the email here
+      return false;
+    } else {
+      // Other error occurred
+      console.error("Error checking email existence:", error);
+      // You can handle the error here
+      return false;
+    }
+  }
+}*/
+
 
 // Validate Functions
 function validate_email(email) {
@@ -192,7 +218,6 @@ function getUserUid(email) {
   return new Promise((resolve, reject) => {
     auth.signInWithEmailAndPassword(email, password)
       .then(userCredential => {
-        // Get the UID of the logged-in user
         const uid = userCredential.user.uid;
         resolve(uid);
       })
